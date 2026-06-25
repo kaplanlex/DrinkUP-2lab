@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DrinkUp — холодні напої</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body data-page="home">
+  <div class="app-frame home-frame">
+    <header class="site-header">
+      <a class="logo" href="index.html" aria-label="DrinkUp">
+        <span class="logo-mark"></span>
+        <span>DrinkUp</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Головна навігація">
+        <a href="index.html">Головна</a>
+        <a href="catalog.html">Напої</a>
+        <a href="catalog.html?filter=discounts">Акції</a>
+        <a href="#contacts">Контакти</a>
+      </nav>
+
+      <button class="burger" type="button" aria-label="Відкрити меню" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">Літній смак щодня</p>
+          <h1>Освіжи свій день</h1>
+          <p class="hero-text">Найкращі холодні напої з доставкою за 30 хвилин.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="catalog.html">Замовити зараз</a>
+            <a class="btn btn-secondary" href="catalog.html?filter=discounts">Переглянути акції</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Лимонад з лаймом і мʼятою">
+          <img class="drink-png hero-drink" src="assets/drink-lime.png" alt="Лимонад з лаймом і мʼятою" />
+        </div>
+      </section>
+
+      <section class="benefits" aria-label="Переваги сервісу DrinkUp">
+        <article class="benefit-card">
+          <span class="benefit-icon">🚚</span>
+          <h2>Швидка доставка</h2>
+        </article>
+        <article class="benefit-card">
+          <span class="benefit-icon">🍹</span>
+          <h2>Великий вибір</h2>
+        </article>
+        <article class="benefit-card">
+          <span class="benefit-icon">💰</span>
+          <h2>Доступні ціни</h2>
+        </article>
+      </section>
+
+      <section class="mini-catalog" aria-labelledby="popularTitle">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">Меню</span>
+            <h2 id="popularTitle">Популярні напої</h2>
+          </div>
+          <a class="section-link" href="catalog.html">Увесь каталог →</a>
+        </div>
+
+        <div class="catalog-grid compact" id="popularGrid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer class="footer" id="contacts">
+      <address>
+        <a href="tel:+380997990557">+380997990557</a>
+        <a href="mailto:ak@qubiq.cc">ak@qubiq.cc</a>
+        <span>м. Дніпро, вул. Троїцька, 21</span>
+      </address>
+
+      <div class="socials" aria-label="Соціальні мережі">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Telegram">↗</a>
+        <a href="#" aria-label="Instagram">◎</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
