@@ -10,7 +10,7 @@
   <body data-page="checkout">
     <div class="app-frame checkout-frame">
       <header class="top-panel">
-        <a class="icon-back" href="cart.html" aria-label="Повернутися до товару"
+        <a class="icon-back" href="cart.html" aria-label="Повернутися до кошика"
           >‹</a
         >
         <strong>Оформлення замовлення</strong>
@@ -26,38 +26,30 @@
       </header>
 
       <main class="checkout-main">
-        <section class="order-summary" aria-label="Ваше замовлення">
-          <div>
-            <span class="muted">Товар:</span>
-            <strong id="summaryName">Лимонад Fresh Lime</strong>
+        <section class="order-summary" aria-labelledby="checkoutSummaryTitle">
+          <div class="cart-panel-header checkout-summary-header">
+            <div>
+              <span class="section-kicker">Кошик</span>
+              <h2 id="checkoutSummaryTitle">Ваше замовлення</h2>
+            </div>
+
+            <a class="section-link" href="catalog.html">Додати ще →</a>
           </div>
 
-          <div class="summary-row">
-            <span>Ціна: <strong id="summaryPrice">89 грн</strong></span>
-            <div class="quantity small" aria-label="Кількість товару">
-              <button
-                class="quantity-btn"
-                type="button"
-                data-checkout-qty="minus"
-                aria-label="Зменшити кількість"
-              >
-                −
-              </button>
-              <span id="checkoutQuantity">1</span>
-              <button
-                class="quantity-btn"
-                type="button"
-                data-checkout-qty="plus"
-                aria-label="Збільшити кількість"
-              >
-                +
-              </button>
-            </div>
-          </div>
+          <div
+            class="cart-items checkout-cart-items"
+            id="checkoutItems"
+            aria-live="polite"
+          ></div>
+          <p class="empty-cart" id="checkoutEmpty">
+            Кошик порожній. Поверніться до каталогу та додайте напої.
+          </p>
 
           <div class="total-row">
-            <span>До сплати:</span>
-            <strong id="summaryTotal">89 грн</strong>
+            <span
+              >До сплати за <strong id="summaryQuantity">0 шт.</strong>:</span
+            >
+            <strong id="summaryTotal">0 грн</strong>
           </div>
         </section>
 
@@ -115,7 +107,7 @@
           </fieldset>
 
           <div class="form-actions">
-            <button class="btn btn-primary" type="submit">
+            <button class="btn btn-primary" type="submit" id="submitOrderBtn">
               Підтвердити замовлення
             </button>
             <a class="btn btn-secondary" href="catalog.html">Скасувати</a>
@@ -137,7 +129,7 @@
         <span class="modal-icon">✓</span>
         <h2 id="modalTitle">Замовлення прийнято!</h2>
         <p id="modalText">
-          Ми вже готуємо ваш напій. Очікуйте дзвінок оператора.
+          Ми вже готуємо ваші напої. Очікуйте дзвінок оператора.
         </p>
         <a class="btn btn-primary" href="index.html" data-modal-home
           >На головну</a

@@ -41,13 +41,13 @@
 }
 
 body.light-theme {
-  --bg-main: #f8fafc; /* Світлий мʼякий фон сайту */
-  --bg-card: #ffffff; /* Чисто білі картки */
-  --bg-header: #ffffff; /* Білий хедер */
-  --text-primary: #0f172a; /* Контрастний темний текст */
-  --text-secondary: #475569; /* Темно-сірий текст описів */
-  --text-muted: #94a3b8; /* Сіра зачеркнута ціна */
-  --btn-secondary: #e2e8f0; /* Світлі плашки для кнопок/тегів */
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-header: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --btn-secondary: #e2e8f0;
 
   --line: rgba(15, 23, 42, 0.13);
   --line-strong: rgba(15, 23, 42, 0.22);
@@ -1910,4 +1910,394 @@ body,
 .benefits,
 .product-content {
   color: var(--text-primary);
+}
+
+/* =========================================================
+   Multi-item cart fixes
+   ========================================================= */
+
+.cart-panel {
+  width: min(100%, 980px);
+  margin: 28px auto 0;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(
+      circle at 8% 0%,
+      rgba(34, 197, 94, 0.12),
+      transparent 14rem
+    ),
+    var(--bg-card);
+  color: var(--text-primary);
+  box-shadow: var(--shadow);
+}
+
+.cart-panel-header,
+.checkout-summary-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.cart-panel-header h2,
+.checkout-summary-header h2 {
+  margin: 3px 0 0;
+  color: var(--text-primary);
+  font-size: clamp(1.35rem, 3vw, 1.95rem);
+  letter-spacing: -0.04em;
+}
+
+.cart-clear,
+.cart-remove {
+  border: 0;
+  cursor: pointer;
+  color: var(--text-secondary);
+  background: var(--btn-secondary);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cart-clear {
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.cart-clear:hover,
+.cart-remove:hover {
+  color: var(--accent-green);
+  box-shadow: 0 0 18px rgba(34, 197, 94, 0.22);
+  transform: translateY(-1px);
+}
+
+.cart-items {
+  display: grid;
+  gap: 14px;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 16px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--bg-card) 86%, var(--accent-green) 14%);
+}
+
+.cart-item-image {
+  width: 88px;
+  height: 88px;
+  padding: 8px;
+  border-radius: 16px;
+  object-fit: contain;
+  background: var(--btn-secondary);
+}
+
+.cart-item-content {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.cart-item-top,
+.cart-item-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.cart-item h3 {
+  margin: 0 0 4px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.cart-item p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+}
+
+.cart-remove {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.cart-price-stack {
+  display: grid;
+  gap: 2px;
+  color: var(--text-primary);
+}
+
+.cart-old-price {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-decoration: line-through;
+}
+
+.cart-subtotal {
+  display: grid;
+  gap: 2px;
+  text-align: right;
+}
+
+.cart-subtotal span {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+}
+
+.cart-subtotal strong,
+.cart-price-stack strong {
+  color: var(--text-primary);
+}
+
+.empty-cart {
+  margin: 0;
+  padding: 18px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 16px;
+  color: var(--text-secondary);
+  background: var(--btn-secondary);
+}
+
+.empty-cart[hidden] {
+  display: none;
+}
+
+.cart-total-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--text-secondary);
+}
+
+.cart-total-line strong {
+  color: var(--text-primary);
+  font-size: 1.28rem;
+}
+
+.cart-panel-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.btn.is-disabled,
+.btn:disabled,
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  pointer-events: none;
+  filter: grayscale(0.4);
+}
+
+.checkout-cart-items .cart-item {
+  grid-template-columns: 70px 1fr;
+}
+
+.checkout-cart-items .cart-item-image {
+  width: 70px;
+  height: 70px;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 1000;
+  max-width: calc(100vw - 32px);
+  padding: 12px 16px;
+  border: 1px solid rgba(34, 197, 94, 0.42);
+  border-radius: 999px;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  box-shadow:
+    0 12px 34px rgba(0, 0, 0, 0.25),
+    0 0 24px rgba(34, 197, 94, 0.18);
+  opacity: 0;
+  transform: translate(-50%, 14px);
+  pointer-events: none;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+body.light-theme .cart-panel,
+body.light-theme .cart-item,
+body.light-theme .empty-cart,
+body.light-theme .toast {
+  background: var(--bg-card);
+}
+
+@media (max-width: 720px) {
+  .cart-panel {
+    padding: 18px;
+  }
+
+  .cart-item,
+  .checkout-cart-items .cart-item {
+    grid-template-columns: 66px 1fr;
+    gap: 12px;
+  }
+
+  .cart-item-image,
+  .checkout-cart-items .cart-item-image {
+    width: 66px;
+    height: 66px;
+  }
+
+  .cart-item-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cart-subtotal {
+    width: 100%;
+    text-align: left;
+  }
+
+  .cart-panel-header,
+  .checkout-summary-header,
+  .cart-total-line {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cart-panel-actions,
+  .bottom-actions {
+    justify-content: stretch;
+  }
+
+  .cart-panel-actions .btn,
+  .bottom-actions .btn,
+  .bottom-actions button {
+    flex: 1 1 100%;
+  }
+}
+
+/* =========================================================
+   Icon alignment fixes
+   Центруємо всі круглі кнопки та SVG-іконки через Flexbox,
+   щоб стрілки, хрестики й соціальні іконки не зʼїжджали вниз.
+   ========================================================= */
+
+.card-action,
+.cart-remove,
+.quantity-btn,
+.theme-toggle,
+.icon-back,
+.socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  padding: 0;
+  line-height: 1;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.card-action {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  border-radius: 12px;
+}
+
+.card-action-icon {
+  display: block;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.cart-remove {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 50%;
+  font-size: 0;
+}
+
+.cart-remove-icon {
+  display: block;
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.quantity-btn {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  min-height: 34px;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.quantity.small .quantity-btn {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
+}
+
+.socials a {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 50%;
+}
+
+.socials a svg,
+.theme-toggle svg,
+.icon-back svg {
+  display: block;
+  flex: 0 0 auto;
+  margin: 0;
+  pointer-events: none;
+  /* vertical-align: middle; */
+}
+
+.socials a i,
+.card-action i,
+.cart-remove i {
+  margin: 0;
+  line-height: 1;
 }

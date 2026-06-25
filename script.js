@@ -6,8 +6,8 @@ const STORAGE_KEYS = {
 };
 
 const CATEGORY_LABELS = {
-  lemonade: "Лимонад",
-  juice: "Сік",
+  lemonade: "Лимонади",
+  juice: "Соки",
   coffee: "Айс-кава",
   smoothie: "Смузі",
 };
@@ -59,8 +59,8 @@ const PRODUCTS = [
     badge: "discount",
     theme: "lime",
     image: "assets/drink-lime.png",
-    keywords: ["лимонад", "лайм", "мʼята", "освіжаючий"],
-    features: ["Свіжий лайм", "Без консервантів", "Охолоджений"],
+    keywords: ["лимонад", "лайм", "мʼята", "лід", "освіжаючий"],
+    features: ["Свіжий лайм", "Без консервантів", "Добре охолоджений"],
     details: [
       ["Обʼєм", "0.5 л"],
       ["Температура", "4°C"],
@@ -69,7 +69,7 @@ const PRODUCTS = [
   },
   {
     id: "mint-cucumber",
-    name: "Mint Cucumber Lemonade",
+    name: "Огірково-мʼятний лимонад",
     short: "Огірок, мʼята, лимон",
     price: 94,
     oldPrice: 0,
@@ -79,7 +79,7 @@ const PRODUCTS = [
     badge: "no-sugar",
     theme: "lime",
     image: "assets/drink-lime.png",
-    keywords: ["лимонад", "огірок", "мʼята", "без цукру"],
+    keywords: ["лимонад", "огірок", "мʼята", "лимон", "без цукру"],
     features: ["Свіжий огірок", "Легка кислинка", "Мʼятний післясмак"],
     details: [
       ["Обʼєм", "0.5 л"],
@@ -89,7 +89,7 @@ const PRODUCTS = [
   },
   {
     id: "strawberry-lemon",
-    name: "Strawberry Lemon",
+    name: "Полуничний лимонад",
     short: "Полуниця, лимон, сода",
     price: 99,
     oldPrice: 119,
@@ -109,7 +109,7 @@ const PRODUCTS = [
   },
   {
     id: "mango-breeze",
-    name: "Mango Breeze",
+    name: "Манговий бриз",
     short: "Манго, лайм, тонік",
     price: 108,
     oldPrice: 0,
@@ -129,8 +129,8 @@ const PRODUCTS = [
   },
   {
     id: "orange-splash",
-    name: "Orange Splash",
-    short: "Апельсин, лимон, сода",
+    name: "Апельсиновий фреш",
+    short: "Апельсин, лимон, лід",
     price: 92,
     oldPrice: 110,
     category: "juice",
@@ -139,8 +139,8 @@ const PRODUCTS = [
     badge: "discount",
     theme: "orange",
     image: "assets/drink-orange.png",
-    keywords: ["сік", "апельсин", "лимон", "свіжий"],
-    features: ["Свіжий апельсин", "Газована основа", "Без барвників"],
+    keywords: ["сік", "фреш", "апельсин", "лимон", "свіжий"],
+    features: ["Свіжий апельсин", "Лимонна нотка", "Без барвників"],
     details: [
       ["Обʼєм", "0.5 л"],
       ["Температура", "4°C"],
@@ -149,7 +149,7 @@ const PRODUCTS = [
   },
   {
     id: "apple-green",
-    name: "Green Apple Juice",
+    name: "Зелений яблучний сік",
     short: "Яблуко, лайм, лід",
     price: 86,
     oldPrice: 0,
@@ -169,7 +169,7 @@ const PRODUCTS = [
   },
   {
     id: "grapefruit-tonic",
-    name: "Grapefruit Tonic",
+    name: "Грейпфрутовий тонік",
     short: "Грейпфрут, тонік, розмарин",
     price: 104,
     oldPrice: 0,
@@ -180,7 +180,7 @@ const PRODUCTS = [
     theme: "orange",
     image: "assets/drink-orange.png",
     keywords: ["сік", "грейпфрут", "тонік", "розмарин"],
-    features: ["Грейпфрутовий фреш", "Тонік", "Розмариновий аромат"],
+    features: ["Грейпфрутовий фреш", "Освіжаючий тонік", "Розмариновий аромат"],
     details: [
       ["Обʼєм", "0.45 л"],
       ["Температура", "4°C"],
@@ -189,8 +189,8 @@ const PRODUCTS = [
   },
   {
     id: "berry-ice-tea",
-    name: "Berry Ice Tea",
-    short: "Ягоди, чай, лід",
+    name: "Ягідний холодний чай",
+    short: "Ягоди, чорний чай, лід",
     price: 95,
     oldPrice: 0,
     category: "juice",
@@ -199,8 +199,8 @@ const PRODUCTS = [
     badge: "new",
     theme: "berry",
     image: "assets/drink-berry.png",
-    keywords: ["сік", "чай", "ягоди", "холодний чай"],
-    features: ["Натуральні ягоди", "Холодний чай", "Легкий смак"],
+    keywords: ["чай", "холодний чай", "ягоди", "лід"],
+    features: ["Натуральні ягоди", "Охолоджений чай", "Легкий ягідний смак"],
     details: [
       ["Обʼєм", "0.5 л"],
       ["Температура", "5°C"],
@@ -209,7 +209,7 @@ const PRODUCTS = [
   },
   {
     id: "classic-cold-brew",
-    name: "Classic Cold Brew",
+    name: "Класичний колд брю",
     short: "Кава, лід, мʼяка гірчинка",
     price: 105,
     oldPrice: 0,
@@ -219,7 +219,7 @@ const PRODUCTS = [
     badge: "hit",
     theme: "berry",
     image: "assets/drink-berry.png",
-    keywords: ["кава", "айс-кава", "cold brew", "лід"],
+    keywords: ["кава", "айс-кава", "колд брю", "лід"],
     features: ["12 годин настоювання", "Мʼякий смак", "Без молока"],
     details: [
       ["Обʼєм", "0.35 л"],
@@ -229,7 +229,7 @@ const PRODUCTS = [
   },
   {
     id: "vanilla-iced-latte",
-    name: "Vanilla Iced Latte",
+    name: "Ванільний айс латте",
     short: "Еспресо, молоко, ваніль",
     price: 109,
     oldPrice: 130,
@@ -239,7 +239,7 @@ const PRODUCTS = [
     badge: "discount",
     theme: "orange",
     image: "assets/drink-orange.png",
-    keywords: ["кава", "айс-кава", "лате", "ваніль"],
+    keywords: ["кава", "айс-кава", "лате", "ваніль", "молоко"],
     features: ["Подвійний еспресо", "Ванільний сироп", "Охолоджене молоко"],
     details: [
       ["Обʼєм", "0.4 л"],
@@ -249,7 +249,7 @@ const PRODUCTS = [
   },
   {
     id: "cocoa-frappe",
-    name: "Cocoa Frappe",
+    name: "Какао-фрапе",
     short: "Какао, кава, лід",
     price: 118,
     oldPrice: 0,
@@ -260,7 +260,7 @@ const PRODUCTS = [
     theme: "berry",
     image: "assets/drink-berry.png",
     keywords: ["кава", "фрапе", "какао", "лід"],
-    features: ["Кавова основа", "Какао", "Кремова текстура"],
+    features: ["Кавова основа", "Натуральне какао", "Кремова текстура"],
     details: [
       ["Обʼєм", "0.45 л"],
       ["Температура", "5°C"],
@@ -269,7 +269,7 @@ const PRODUCTS = [
   },
   {
     id: "green-smoothie",
-    name: "Green Detox Smoothie",
+    name: "Зелений детокс-смузі",
     short: "Шпинат, яблуко, лайм",
     price: 115,
     oldPrice: 135,
@@ -279,8 +279,8 @@ const PRODUCTS = [
     badge: "discount",
     theme: "lime",
     image: "assets/drink-lime.png",
-    keywords: ["смузі", "детокс", "шпинат", "яблуко"],
-    features: ["Шпинат", "Зелене яблуко", "Натуральна основа"],
+    keywords: ["смузі", "детокс", "шпинат", "яблуко", "лайм"],
+    features: ["Свіжий шпинат", "Зелене яблуко", "Натуральна основа"],
     details: [
       ["Обʼєм", "0.45 л"],
       ["Температура", "5°C"],
@@ -289,7 +289,7 @@ const PRODUCTS = [
   },
   {
     id: "berry-smoothie",
-    name: "Berry Smoothie",
+    name: "Ягідний смузі",
     short: "Малина, чорниця, банан",
     price: 119,
     oldPrice: 145,
@@ -309,7 +309,7 @@ const PRODUCTS = [
   },
   {
     id: "banana-energy",
-    name: "Banana Energy Smoothie",
+    name: "Банановий енерджі-смузі",
     short: "Банан, йогурт, мед",
     price: 112,
     oldPrice: 0,
@@ -319,8 +319,8 @@ const PRODUCTS = [
     badge: "hit",
     theme: "orange",
     image: "assets/drink-orange.png",
-    keywords: ["смузі", "банан", "йогурт", "енергія"],
-    features: ["Банан", "Йогурт", "Легкий медовий смак"],
+    keywords: ["смузі", "банан", "йогурт", "мед", "енергія"],
+    features: ["Стиглий банан", "Натуральний йогурт", "Легкий медовий смак"],
     details: [
       ["Обʼєм", "0.45 л"],
       ["Температура", "5°C"],
@@ -329,7 +329,7 @@ const PRODUCTS = [
   },
   {
     id: "watermelon-fresh",
-    name: "Watermelon Fresh",
+    name: "Кавуновий фреш",
     short: "Кавун, лайм, мʼята",
     price: 105,
     oldPrice: 125,
@@ -339,8 +339,8 @@ const PRODUCTS = [
     badge: "discount",
     theme: "berry",
     image: "assets/drink-berry.png",
-    keywords: ["смузі", "кавун", "лайм", "мʼята"],
-    features: ["Кавуновий фреш", "Лайм", "Свіжа мʼята"],
+    keywords: ["фреш", "смузі", "кавун", "лайм", "мʼята"],
+    features: ["Кавуновий фреш", "Свіжий лайм", "Свіжа мʼята"],
     details: [
       ["Обʼєм", "0.5 л"],
       ["Температура", "4°C"],
@@ -654,7 +654,11 @@ function createProductCardMarkup(product) {
             ${oldPriceMarkup}
             <span class="catalog-price">${formatPrice(product.price)}</span>
           </div>
-          <span class="card-action" aria-hidden="true">→</span>
+          <span class="card-action" aria-hidden="true">
+            <svg class="card-action-icon" viewBox="0 0 24 24" focusable="false">
+              <path d="M5 12h12m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
         </div>
       </div>
     </a>
@@ -744,7 +748,9 @@ function initProductPage() {
   currentQuantity = 1;
 
   renderProduct();
+  renderCartPage();
   bindProductControls();
+  bindCartPageControls();
 }
 
 function renderProduct() {
@@ -816,7 +822,8 @@ function renderProduct() {
 function bindProductControls() {
   const quantityButtons = document.querySelectorAll("[data-qty]");
   const nextButton = document.querySelector("#nextProductBtn");
-  const orderButton = document.querySelector("#orderBtn");
+  const addButton = document.querySelector("#orderBtn");
+  const checkoutButton = document.querySelector("#checkoutBtn");
 
   quantityButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -834,21 +841,25 @@ function bindProductControls() {
     });
   }
 
-  if (orderButton) {
-    orderButton.addEventListener("click", () => {
+  if (addButton) {
+    addButton.addEventListener("click", () => {
       const product = PRODUCTS[currentProductIndex];
+      addToCart(product.id, currentQuantity);
+      currentQuantity = 1;
+      updateText("#quantityValue", currentQuantity);
+      renderCartPage();
+      showToast(`«${product.name}» додано до кошика.`);
+    });
+  }
 
-      setStorageItem(STORAGE_KEYS.cart, {
-        productId: product.id,
-        quantity: currentQuantity,
-        price: product.price,
-        oldPrice: product.oldPrice,
-        name: product.name,
-        isDiscounted: product.isDiscounted,
-        createdAt: new Date().toISOString(),
-      });
+  if (checkoutButton) {
+    checkoutButton.addEventListener("click", (event) => {
+      const cart = getCartItems();
 
-      window.location.href = "checkout.html";
+      if (cart.length === 0) {
+        event.preventDefault();
+        showToast("Спочатку додайте напій до кошика.");
+      }
     });
   }
 }
@@ -865,68 +876,278 @@ function createDrinkArtwork(product) {
   `;
 }
 
-function initCheckoutPage() {
-  const cart = getCartWithFallback();
+/* =========================================================
+   Кошик з кількома різними напоями
+   ========================================================= */
 
-  renderCheckoutSummary(cart);
-  bindCheckoutQuantity(cart);
-  bindCheckoutForm(cart);
-  bindModalControls();
-}
+function addToCart(productId, quantity = 1) {
+  const product = getProductById(productId);
+  if (!product) return [];
 
-function getCartWithFallback() {
-  const storedCart = getStorageItem(STORAGE_KEYS.cart);
+  const cart = getCartItems();
+  const existingItem = cart.find((item) => item.productId === productId);
+  const amount = Math.max(Number(quantity) || 1, 1);
 
-  if (storedCart && storedCart.productId) {
-    return storedCart;
+  if (existingItem) {
+    existingItem.quantity = Math.min(
+      (Number(existingItem.quantity) || 1) + amount,
+      99,
+    );
+    existingItem.price = product.price;
+    existingItem.oldPrice = product.oldPrice;
+    existingItem.name = product.name;
+    existingItem.isDiscounted = product.isDiscounted;
+    existingItem.image = product.image;
+    existingItem.updatedAt = new Date().toISOString();
+  } else {
+    cart.push({
+      productId: product.id,
+      quantity: amount,
+      price: product.price,
+      oldPrice: product.oldPrice,
+      name: product.name,
+      isDiscounted: product.isDiscounted,
+      image: product.image,
+      createdAt: new Date().toISOString(),
+    });
   }
 
-  const product = PRODUCTS[0];
-
-  return {
-    productId: product.id,
-    quantity: 1,
-    price: product.price,
-    oldPrice: product.oldPrice,
-    name: product.name,
-    isDiscounted: product.isDiscounted,
-    createdAt: new Date().toISOString(),
-  };
+  saveCartItems(cart);
+  return cart;
 }
 
-function renderCheckoutSummary(cart) {
-  const product = getProductById(cart.productId) || PRODUCTS[0];
-  const quantity = Number(cart.quantity) || 1;
-  const total = product.price * quantity;
+function getCartItems() {
+  const storedCart = getStorageItem(STORAGE_KEYS.cart);
 
-  updateText("#summaryName", product.name);
-  updateText("#summaryPrice", formatPrice(product.price));
-  updateText("#checkoutQuantity", quantity);
-  updateText("#summaryTotal", formatPrice(total));
+  if (Array.isArray(storedCart)) {
+    return normalizeCartItems(storedCart);
+  }
+
+  // Сумісність зі старою версією, де в localStorage зберігався один обʼєкт.
+  if (storedCart && storedCart.productId) {
+    return normalizeCartItems([storedCart]);
+  }
+
+  return [];
 }
 
-function bindCheckoutQuantity(cart) {
-  const buttons = document.querySelectorAll("[data-checkout-qty]");
+function normalizeCartItems(items) {
+  return items
+    .map((item) => {
+      const product = getProductById(item.productId);
+      if (!product) return null;
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const action = button.dataset.checkoutQty;
-      const nextQuantity = updateQuantity(Number(cart.quantity) || 1, action);
-      const product = getProductById(cart.productId) || PRODUCTS[0];
+      return {
+        productId: product.id,
+        quantity: Math.max(Number(item.quantity) || 1, 1),
+        price: product.price,
+        oldPrice: product.oldPrice,
+        name: product.name,
+        isDiscounted: product.isDiscounted,
+        image: product.image,
+        createdAt: item.createdAt || new Date().toISOString(),
+        updatedAt: item.updatedAt || item.createdAt || new Date().toISOString(),
+      };
+    })
+    .filter(Boolean);
+}
 
-      cart.quantity = nextQuantity;
-      cart.price = product.price;
-      cart.oldPrice = product.oldPrice;
-      cart.name = product.name;
-      cart.isDiscounted = product.isDiscounted;
+function saveCartItems(items) {
+  setStorageItem(STORAGE_KEYS.cart, normalizeCartItems(items));
+}
 
-      setStorageItem(STORAGE_KEYS.cart, cart);
-      renderCheckoutSummary(cart);
-    });
+function updateCartItemQuantity(productId, action) {
+  const cart = getCartItems();
+  const item = cart.find((cartItem) => cartItem.productId === productId);
+
+  if (!item) return cart;
+
+  item.quantity = updateQuantity(Number(item.quantity) || 1, action);
+  item.updatedAt = new Date().toISOString();
+  saveCartItems(cart);
+  return getCartItems();
+}
+
+function removeFromCart(productId) {
+  const nextCart = getCartItems().filter(
+    (item) => item.productId !== productId,
+  );
+  saveCartItems(nextCart);
+  return nextCart;
+}
+
+function clearCart() {
+  localStorage.removeItem(STORAGE_KEYS.cart);
+}
+
+function getCartTotals(cart = getCartItems()) {
+  return cart.reduce(
+    (totals, item) => {
+      const product = getProductById(item.productId);
+      const price = product ? product.price : Number(item.price) || 0;
+      const quantity = Number(item.quantity) || 1;
+
+      totals.quantity += quantity;
+      totals.total += price * quantity;
+      return totals;
+    },
+    { quantity: 0, total: 0 },
+  );
+}
+
+function createCartItemMarkup(item, options = {}) {
+  const product = getProductById(item.productId);
+  if (!product) return "";
+
+  const quantity = Number(item.quantity) || 1;
+  const subtotal = product.price * quantity;
+  const oldPriceMarkup =
+    product.isDiscounted && product.oldPrice > product.price
+      ? `<span class="cart-old-price">${formatPrice(product.oldPrice)}</span>`
+      : "";
+  const removeButtonMarkup =
+    options.allowRemove === false
+      ? ""
+      : `<button class="cart-remove" type="button" data-remove-cart="${escapeHtml(product.id)}" aria-label="Видалити ${escapeHtml(product.name)} з кошика">
+        <svg class="cart-remove-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+          <path d="M7 7l10 10M17 7 7 17" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+        </svg>
+      </button>`;
+
+  return `
+    <article class="cart-item" data-cart-item="${escapeHtml(product.id)}">
+      <img class="cart-item-image" src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" />
+
+      <div class="cart-item-content">
+        <div class="cart-item-top">
+          <div>
+            <h3>${escapeHtml(product.name)}</h3>
+            <p>${escapeHtml(product.short)}</p>
+          </div>
+          ${removeButtonMarkup}
+        </div>
+
+        <div class="cart-item-bottom">
+          <div class="cart-price-stack">
+            ${oldPriceMarkup}
+            <strong>${formatPrice(product.price)}</strong>
+          </div>
+
+          <div class="quantity small" aria-label="Кількість ${escapeHtml(product.name)}">
+            <button class="quantity-btn" type="button" data-cart-qty="minus" data-product-id="${escapeHtml(product.id)}" aria-label="Зменшити кількість">−</button>
+            <span>${quantity}</span>
+            <button class="quantity-btn" type="button" data-cart-qty="plus" data-product-id="${escapeHtml(product.id)}" aria-label="Збільшити кількість">+</button>
+          </div>
+
+          <div class="cart-subtotal">
+            <span>Сума</span>
+            <strong>${formatPrice(subtotal)}</strong>
+          </div>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function renderCartPage() {
+  const cartList = document.querySelector("#cartItems");
+  const cartTotal = document.querySelector("#cartTotal");
+  const cartCount = document.querySelector("#cartCount");
+  const emptyCart = document.querySelector("#emptyCart");
+  const checkoutLinks = document.querySelectorAll("[data-checkout-link]");
+
+  if (!cartList && !cartTotal && !cartCount && !emptyCart) return;
+
+  const cart = getCartItems();
+  const totals = getCartTotals(cart);
+
+  if (cartList) {
+    cartList.innerHTML =
+      cart.length > 0
+        ? cart.map((item) => createCartItemMarkup(item)).join("")
+        : "";
+  }
+
+  if (cartTotal) cartTotal.textContent = formatPrice(totals.total);
+  if (cartCount) cartCount.textContent = `${totals.quantity} шт.`;
+  if (emptyCart) emptyCart.hidden = cart.length > 0;
+
+  checkoutLinks.forEach((link) => {
+    link.classList.toggle("is-disabled", cart.length === 0);
+    link.setAttribute("aria-disabled", String(cart.length === 0));
   });
 }
 
-function bindCheckoutForm(cart) {
+function bindCartPageControls() {
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+
+    const qtyButton = target.closest("[data-cart-qty]");
+    const removeButton = target.closest("[data-remove-cart]");
+    const clearButton = target.closest("[data-clear-cart]");
+
+    if (qtyButton) {
+      const productId = qtyButton.dataset.productId;
+      const action = qtyButton.dataset.cartQty;
+      if (!productId || !action) return;
+
+      updateCartItemQuantity(productId, action);
+      renderCartPage();
+      renderCheckoutCart();
+    }
+
+    if (removeButton) {
+      const productId = removeButton.dataset.removeCart;
+      if (!productId) return;
+
+      removeFromCart(productId);
+      renderCartPage();
+      renderCheckoutCart();
+    }
+
+    if (clearButton) {
+      clearCart();
+      renderCartPage();
+      renderCheckoutCart();
+    }
+  });
+}
+
+function initCheckoutPage() {
+  renderCheckoutCart();
+  bindCartPageControls();
+  bindCheckoutForm();
+  bindModalControls();
+}
+
+function renderCheckoutCart() {
+  const checkoutItems = document.querySelector("#checkoutItems");
+  const checkoutEmpty = document.querySelector("#checkoutEmpty");
+  const summaryTotal = document.querySelector("#summaryTotal");
+  const summaryQuantity = document.querySelector("#summaryQuantity");
+  const submitButton = document.querySelector("#submitOrderBtn");
+
+  if (!checkoutItems && !summaryTotal && !summaryQuantity && !checkoutEmpty)
+    return;
+
+  const cart = getCartItems();
+  const totals = getCartTotals(cart);
+
+  if (checkoutItems) {
+    checkoutItems.innerHTML =
+      cart.length > 0
+        ? cart.map((item) => createCartItemMarkup(item)).join("")
+        : "";
+  }
+
+  if (checkoutEmpty) checkoutEmpty.hidden = cart.length > 0;
+  if (summaryTotal) summaryTotal.textContent = formatPrice(totals.total);
+  if (summaryQuantity) summaryQuantity.textContent = `${totals.quantity} шт.`;
+  if (submitButton) submitButton.disabled = cart.length === 0;
+}
+
+function bindCheckoutForm() {
   const form = document.querySelector("#checkoutForm");
 
   if (!form) return;
@@ -935,6 +1156,13 @@ function bindCheckoutForm(cart) {
     event.preventDefault();
 
     clearFormErrors(form);
+
+    const cart = getCartItems();
+
+    if (cart.length === 0) {
+      showToast("Кошик порожній. Додайте хоча б один напій.");
+      return;
+    }
 
     const formData = new FormData(form);
     const values = {
@@ -952,24 +1180,32 @@ function bindCheckoutForm(cart) {
       return;
     }
 
-    const product = getProductById(cart.productId) || PRODUCTS[0];
-    const quantity = Number(cart.quantity) || 1;
+    const totals = getCartTotals(cart);
     const order = {
       customer: values,
-      product: {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        oldPrice: product.oldPrice,
-        isDiscounted: product.isDiscounted,
-        quantity,
-        total: product.price * quantity,
-      },
+      items: cart.map((item) => {
+        const product = getProductById(item.productId);
+        const quantity = Number(item.quantity) || 1;
+        const price = product ? product.price : Number(item.price) || 0;
+
+        return {
+          id: item.productId,
+          name: product ? product.name : item.name,
+          price,
+          oldPrice: product ? product.oldPrice : item.oldPrice,
+          isDiscounted: product ? product.isDiscounted : item.isDiscounted,
+          quantity,
+          total: price * quantity,
+        };
+      }),
+      totalQuantity: totals.quantity,
+      total: totals.total,
       createdAt: new Date().toISOString(),
     };
 
     setStorageItem(STORAGE_KEYS.lastOrder, order);
-    localStorage.removeItem(STORAGE_KEYS.cart);
+    clearCart();
+    renderCheckoutCart();
     openSuccessModal(order);
     form.reset();
   });
@@ -1029,7 +1265,9 @@ function openSuccessModal(order) {
   if (!modal) return;
 
   if (modalText) {
-    modalText.textContent = `Ваш напій «${order.product.name}» (${order.product.quantity} шт.) вже готується. Сума: ${formatPrice(order.product.total)}. Очікуйте дзвінок оператора.`;
+    const itemText =
+      order.totalQuantity === 1 ? "1 напій" : `${order.totalQuantity} напої(в)`;
+    modalText.textContent = `Ваше замовлення на ${itemText} прийнято. Сума: ${formatPrice(order.total)}. Очікуйте дзвінок оператора.`;
   }
 
   document.body.classList.add("modal-open");
@@ -1072,7 +1310,7 @@ function closeModal(modal) {
 
 function updateQuantity(currentValue, action) {
   if (action === "plus") {
-    return Math.min(currentValue + 1, 20);
+    return Math.min(currentValue + 1, 99);
   }
 
   if (action === "minus") {
@@ -1107,6 +1345,24 @@ function formatPrice(value) {
 function updateText(selector, value) {
   const element = document.querySelector(selector);
   if (element) element.textContent = String(value);
+}
+
+function showToast(message) {
+  let toast = document.querySelector(".toast");
+
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.className = "toast";
+    document.body.appendChild(toast);
+  }
+
+  toast.textContent = message;
+  toast.classList.add("is-visible");
+
+  window.clearTimeout(showToast.timer);
+  showToast.timer = window.setTimeout(() => {
+    toast.classList.remove("is-visible");
+  }, 2200);
 }
 
 function escapeHtml(value) {

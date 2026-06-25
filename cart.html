@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DrinkUp — товар</title>
+    <title>DrinkUp — товар і кошик</title>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
@@ -72,6 +72,42 @@
             </div>
           </div>
         </section>
+
+        <section class="cart-panel" aria-labelledby="cartTitle">
+          <div class="cart-panel-header">
+            <div>
+              <span class="section-kicker">Кошик</span>
+              <h2 id="cartTitle">Ваше замовлення</h2>
+            </div>
+
+            <button class="cart-clear" type="button" data-clear-cart>
+              Очистити
+            </button>
+          </div>
+
+          <div class="cart-items" id="cartItems" aria-live="polite"></div>
+          <p class="empty-cart" id="emptyCart">
+            Кошик порожній. Додайте напій, щоб оформити замовлення.
+          </p>
+
+          <div class="cart-total-line">
+            <span>Разом: <strong id="cartCount">0 шт.</strong></span>
+            <strong id="cartTotal">0 грн</strong>
+          </div>
+
+          <div class="cart-panel-actions">
+            <a class="btn btn-secondary" href="catalog.html"
+              >Продовжити покупки</a
+            >
+            <a
+              class="btn btn-primary"
+              href="checkout.html"
+              id="checkoutBtn"
+              data-checkout-link
+              >Оформити замовлення</a
+            >
+          </div>
+        </section>
       </main>
 
       <footer class="bottom-actions">
@@ -82,7 +118,7 @@
           Наступний товар
         </button>
         <button class="btn btn-primary" type="button" id="orderBtn">
-          Замовити
+          Додати в кошик
         </button>
       </footer>
     </div>
