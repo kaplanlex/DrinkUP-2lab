@@ -1,51 +1,41 @@
-/* =========================================================
-   DrinkUp Vanilla JS
-   - каталог товарів
-   - фільтрація напоїв та акцій
-   - сторінка товару
-   - кількість товарів
-   - localStorage
-   - валідація форми та модальне вікно
-   ========================================================= */
-
 const STORAGE_KEYS = {
   cart: "drinkup:cart",
   selectedProductId: "drinkup:selectedProductId",
-  lastOrder: "drinkup:lastOrder"
+  lastOrder: "drinkup:lastOrder",
 };
 
 const CATEGORY_LABELS = {
   lemonade: "Лимонад",
   juice: "Сік",
   coffee: "Айс-кава",
-  smoothie: "Смузі"
+  smoothie: "Смузі",
 };
 
 const FILTER_TITLES = {
   all: {
     kicker: "Каталог",
-    title: "Усі напої"
+    title: "Усі напої",
   },
   discounts: {
     kicker: "Акції",
-    title: "Акційні напої"
+    title: "Акційні напої",
   },
   lemonade: {
     kicker: "Категорія",
-    title: "Лимонади"
+    title: "Лимонади",
   },
   juice: {
     kicker: "Категорія",
-    title: "Соки"
+    title: "Соки",
   },
   coffee: {
     kicker: "Категорія",
-    title: "Айс-кава"
+    title: "Айс-кава",
   },
   smoothie: {
     kicker: "Категорія",
-    title: "Смузі"
-  }
+    title: "Смузі",
+  },
 };
 
 const PRODUCTS = [
@@ -63,8 +53,8 @@ const PRODUCTS = [
     details: [
       ["Обʼєм", "0.5 л"],
       ["Температура", "4°C"],
-      ["Калорійність", "120 ккал"]
-    ]
+      ["Калорійність", "120 ккал"],
+    ],
   },
   {
     id: "mint-cucumber",
@@ -80,8 +70,8 @@ const PRODUCTS = [
     details: [
       ["Обʼєм", "0.5 л"],
       ["Температура", "4°C"],
-      ["Калорійність", "98 ккал"]
-    ]
+      ["Калорійність", "98 ккал"],
+    ],
   },
   {
     id: "strawberry-lemon",
@@ -97,8 +87,8 @@ const PRODUCTS = [
     details: [
       ["Обʼєм", "0.5 л"],
       ["Температура", "5°C"],
-      ["Калорійність", "132 ккал"]
-    ]
+      ["Калорійність", "132 ккал"],
+    ],
   },
   {
     id: "mango-breeze",
@@ -114,8 +104,8 @@ const PRODUCTS = [
     details: [
       ["Обʼєм", "0.5 л"],
       ["Температура", "4°C"],
-      ["Калорійність", "146 ккал"]
-    ]
+      ["Калорійність", "146 ккал"],
+    ],
   },
   {
     id: "orange-splash",
@@ -131,8 +121,8 @@ const PRODUCTS = [
     details: [
       ["Обʼєм", "0.5 л"],
       ["Температура", "4°C"],
-      ["Калорійність", "128 ккал"]
-    ]
+      ["Калорійність", "128 ккал"],
+    ],
   },
   {
     id: "apple-green",
@@ -148,8 +138,8 @@ const PRODUCTS = [
     details: [
       ["Обʼєм", "0.4 л"],
       ["Температура", "5°C"],
-      ["Калорійність", "112 ккал"]
-    ]
+      ["Калорійність", "112 ккал"],
+    ],
   },
   {
     id: "grapefruit-tonic",
@@ -165,8 +155,8 @@ const PRODUCTS = [
     details: [
       ["Обʼєм", "0.45 л"],
       ["Температура", "4°C"],
-      ["Калорійність", "118 ккал"]
-    ]
+      ["Калорійність", "118 ккал"],
+    ],
   },
   {
     id: "berry-ice-tea",
@@ -182,8 +172,8 @@ const PRODUCTS = [
     details: [
       ["Обʼєм", "0.5 л"],
       ["Температура", "5°C"],
-      ["Калорійність", "135 ккал"]
-    ]
+      ["Калорійність", "135 ккал"],
+    ],
   },
   {
     id: "classic-cold-brew",
@@ -199,8 +189,8 @@ const PRODUCTS = [
     details: [
       ["Обʼєм", "0.35 л"],
       ["Температура", "6°C"],
-      ["Калорійність", "24 ккал"]
-    ]
+      ["Калорійність", "24 ккал"],
+    ],
   },
   {
     id: "vanilla-iced-latte",
@@ -216,8 +206,8 @@ const PRODUCTS = [
     details: [
       ["Обʼєм", "0.4 л"],
       ["Температура", "6°C"],
-      ["Калорійність", "188 ккал"]
-    ]
+      ["Калорійність", "188 ккал"],
+    ],
   },
   {
     id: "cocoa-frappe",
@@ -233,8 +223,8 @@ const PRODUCTS = [
     details: [
       ["Обʼєм", "0.45 л"],
       ["Температура", "5°C"],
-      ["Калорійність", "215 ккал"]
-    ]
+      ["Калорійність", "215 ккал"],
+    ],
   },
   {
     id: "green-smoothie",
@@ -250,8 +240,8 @@ const PRODUCTS = [
     details: [
       ["Обʼєм", "0.45 л"],
       ["Температура", "5°C"],
-      ["Калорійність", "164 ккал"]
-    ]
+      ["Калорійність", "164 ккал"],
+    ],
   },
   {
     id: "berry-smoothie",
@@ -267,8 +257,8 @@ const PRODUCTS = [
     details: [
       ["Обʼєм", "0.45 л"],
       ["Температура", "5°C"],
-      ["Калорійність", "198 ккал"]
-    ]
+      ["Калорійність", "198 ккал"],
+    ],
   },
   {
     id: "banana-energy",
@@ -284,8 +274,8 @@ const PRODUCTS = [
     details: [
       ["Обʼєм", "0.45 л"],
       ["Температура", "5°C"],
-      ["Калорійність", "226 ккал"]
-    ]
+      ["Калорійність", "226 ккал"],
+    ],
   },
   {
     id: "watermelon-fresh",
@@ -301,9 +291,9 @@ const PRODUCTS = [
     details: [
       ["Обʼєм", "0.5 л"],
       ["Температура", "4°C"],
-      ["Калорійність", "142 ккал"]
-    ]
-  }
+      ["Калорійність", "142 ккал"],
+    ],
+  },
 ];
 
 let currentProductIndex = 0;
@@ -368,7 +358,10 @@ function setActiveHeaderLink() {
       const filterFromUrl = getFilterFromUrl();
       const navFilter = link.dataset.catalogNav || "all";
 
-      if (filterFromUrl === navFilter || (filterFromUrl === "all" && navFilter === "all")) {
+      if (
+        filterFromUrl === navFilter ||
+        (filterFromUrl === "all" && navFilter === "all")
+      ) {
         link.classList.add("is-active");
       }
     }
@@ -430,7 +423,9 @@ function renderProducts(filter = "all") {
 
   if (!catalogGrid) return;
 
-  catalogGrid.innerHTML = filteredProducts.map(createProductCardMarkup).join("");
+  catalogGrid.innerHTML = filteredProducts
+    .map(createProductCardMarkup)
+    .join("");
 
   if (emptyMessage) {
     emptyMessage.hidden = filteredProducts.length > 0;
@@ -495,7 +490,12 @@ function updateCatalogTexts(filter, count) {
 
   updateText("#catalogKicker", titleData.kicker);
   updateText("#catalogSectionTitle", titleData.title);
-  updateText("#catalogTitle", filter === "discounts" ? "Акційні напої DrinkUp" : "Напої для будь-якого настрою");
+  updateText(
+    "#catalogTitle",
+    filter === "discounts"
+      ? "Акційні напої DrinkUp"
+      : "Напої для будь-якого настрою",
+  );
   updateText("#catalogCount", count);
 }
 
@@ -512,17 +512,24 @@ function updateCatalogNavLinks(filter) {
 
   navLinks.forEach((link) => {
     const navFilter = link.dataset.catalogNav || "all";
-    link.classList.toggle("is-active", navFilter === filter || (navFilter === "all" && filter !== "discounts"));
+    link.classList.toggle(
+      "is-active",
+      navFilter === filter || (navFilter === "all" && filter !== "discounts"),
+    );
   });
 }
 
 function updateCatalogUrl(filter) {
-  const nextUrl = filter === "all" ? "catalog.html" : `catalog.html?filter=${encodeURIComponent(filter)}`;
+  const nextUrl =
+    filter === "all"
+      ? "catalog.html"
+      : `catalog.html?filter=${encodeURIComponent(filter)}`;
   window.history.replaceState({}, "", nextUrl);
 }
 
 function getFilterFromUrl() {
-  const filterFromUrl = new URLSearchParams(window.location.search).get("filter") || "all";
+  const filterFromUrl =
+    new URLSearchParams(window.location.search).get("filter") || "all";
   return normalizeFilter(filterFromUrl);
 }
 
@@ -532,10 +539,14 @@ function normalizeFilter(filter) {
 }
 
 function initProductPage() {
-  const productIdFromUrl = new URLSearchParams(window.location.search).get("id");
+  const productIdFromUrl = new URLSearchParams(window.location.search).get(
+    "id",
+  );
   const savedProductId = getStorageItem(STORAGE_KEYS.selectedProductId);
   const initialProductId = productIdFromUrl || savedProductId || PRODUCTS[0].id;
-  const foundIndex = PRODUCTS.findIndex((product) => product.id === initialProductId);
+  const foundIndex = PRODUCTS.findIndex(
+    (product) => product.id === initialProductId,
+  );
 
   currentProductIndex = foundIndex === -1 ? 0 : foundIndex;
   currentQuantity = 1;
@@ -572,21 +583,30 @@ function renderProduct() {
     }
 
     if (product.isDiscounted && product.oldPrice > product.price) {
-      priceBox.insertAdjacentHTML("afterbegin", `<span class="product-old-price">${formatPrice(product.oldPrice)}</span>`);
+      priceBox.insertAdjacentHTML(
+        "afterbegin",
+        `<span class="product-old-price">${formatPrice(product.oldPrice)}</span>`,
+      );
     }
   }
 
   if (featureList) {
-    featureList.innerHTML = product.features.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+    featureList.innerHTML = product.features
+      .map((item) => `<li>${escapeHtml(item)}</li>`)
+      .join("");
   }
 
   if (detailsList) {
-    detailsList.innerHTML = product.details.map(([label, value]) => `
+    detailsList.innerHTML = product.details
+      .map(
+        ([label, value]) => `
       <div>
         <dt>${escapeHtml(label)}:</dt>
         <dd>${escapeHtml(value)}</dd>
       </div>
-    `).join("");
+    `,
+      )
+      .join("");
   }
 
   if (productVisual) {
@@ -594,7 +614,11 @@ function renderProduct() {
     productVisual.innerHTML = createDrinkArtwork(product);
   }
 
-  window.history.replaceState({}, "", `cart.html?id=${encodeURIComponent(product.id)}`);
+  window.history.replaceState(
+    {},
+    "",
+    `cart.html?id=${encodeURIComponent(product.id)}`,
+  );
 }
 
 function bindProductControls() {
@@ -629,7 +653,7 @@ function bindProductControls() {
         oldPrice: product.oldPrice,
         name: product.name,
         isDiscounted: product.isDiscounted,
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
       });
 
       window.location.href = "checkout.html";
@@ -673,7 +697,7 @@ function getCartWithFallback() {
     oldPrice: product.oldPrice,
     name: product.name,
     isDiscounted: product.isDiscounted,
-    createdAt: new Date().toISOString()
+    createdAt: new Date().toISOString(),
   };
 }
 
@@ -725,7 +749,7 @@ function bindCheckoutForm(cart) {
       email: String(formData.get("email") || "").trim(),
       phone: String(formData.get("phone") || "").trim(),
       address: String(formData.get("address") || "").trim(),
-      payment: String(formData.get("payment") || "Готівка")
+      payment: String(formData.get("payment") || "Готівка"),
     };
 
     const errors = validateOrderForm(values);
@@ -746,9 +770,9 @@ function bindCheckoutForm(cart) {
         oldPrice: product.oldPrice,
         isDiscounted: product.isDiscounted,
         quantity,
-        total: product.price * quantity
+        total: product.price * quantity,
       },
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     };
 
     setStorageItem(STORAGE_KEYS.lastOrder, order);
@@ -870,11 +894,17 @@ function getProductById(productId) {
 }
 
 function getDiscountPercent(product) {
-  if (!product.isDiscounted || !product.oldPrice || product.oldPrice <= product.price) {
+  if (
+    !product.isDiscounted ||
+    !product.oldPrice ||
+    product.oldPrice <= product.price
+  ) {
     return 0;
   }
 
-  return Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
+  return Math.round(
+    ((product.oldPrice - product.price) / product.oldPrice) * 100,
+  );
 }
 
 function formatPrice(value) {

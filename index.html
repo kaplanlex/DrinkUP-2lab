@@ -1,92 +1,142 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DrinkUp — холодні напої</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
-</head>
-<body data-page="home">
-  <div class="app-frame home-frame">
-    <header class="site-header">
-      <a class="logo" href="index.html" aria-label="DrinkUp">
-        <span class="logo-mark"></span>
-        <span>DrinkUp</span>
-      </a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DrinkUp — холодні напої</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body data-page="home">
+    <div class="app-frame home-frame">
+      <header class="site-header">
+        <a class="logo" href="index.html" aria-label="DrinkUp">
+          <span class="logo-mark"></span>
+          <span>DrinkUp</span>
+        </a>
 
-      <nav class="site-nav" aria-label="Головна навігація">
-        <a href="index.html">Головна</a>
-        <a href="catalog.html">Напої</a>
-        <a href="catalog.html?filter=discounts">Акції</a>
-        <a href="#contacts">Контакти</a>
-      </nav>
+        <nav class="site-nav" aria-label="Головна навігація">
+          <a href="index.html">Головна</a>
+          <a href="catalog.html">Напої</a>
+          <a href="catalog.html?filter=discounts">Акції</a>
+          <a href="#contacts">Контакти</a>
+        </nav>
 
-      <button class="burger" type="button" aria-label="Відкрити меню" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </header>
+        <button
+          class="burger"
+          type="button"
+          aria-label="Відкрити меню"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </header>
 
-    <main>
-      <section class="hero" id="home">
-        <div class="hero-copy">
-          <p class="eyebrow">Літній смак щодня</p>
-          <h1>Освіжи свій день</h1>
-          <p class="hero-text">Найкращі холодні напої з доставкою за 30 хвилин.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="catalog.html">Замовити зараз</a>
-            <a class="btn btn-secondary" href="catalog.html?filter=discounts">Переглянути акції</a>
+      <main>
+        <section class="hero" id="home">
+          <div class="hero-copy">
+            <p class="eyebrow">Літній смак щодня</p>
+            <h1>Освіжи свій день</h1>
+            <p class="hero-text">
+              Найкращі холодні напої з доставкою за 30 хвилин.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="catalog.html">Замовити зараз</a>
+              <a class="btn btn-secondary" href="catalog.html?filter=discounts"
+                >Переглянути акції</a
+              >
+            </div>
           </div>
-        </div>
 
-        <div class="hero-visual" aria-label="Лимонад з лаймом і мʼятою">
-          <img class="drink-png hero-drink" src="assets/drink-lime.png" alt="Лимонад з лаймом і мʼятою" />
-        </div>
-      </section>
-
-      <section class="benefits" aria-label="Переваги сервісу DrinkUp">
-        <article class="benefit-card">
-          <span class="benefit-icon">🚚</span>
-          <h2>Швидка доставка</h2>
-        </article>
-        <article class="benefit-card">
-          <span class="benefit-icon">🍹</span>
-          <h2>Великий вибір</h2>
-        </article>
-        <article class="benefit-card">
-          <span class="benefit-icon">💰</span>
-          <h2>Доступні ціни</h2>
-        </article>
-      </section>
-
-      <section class="mini-catalog" aria-labelledby="popularTitle">
-        <div class="section-heading">
-          <div>
-            <span class="section-kicker">Меню</span>
-            <h2 id="popularTitle">Популярні напої</h2>
+          <div class="hero-visual" aria-label="Лимонад з лаймом і мʼятою">
+            <img
+              class="drink-png hero-drink"
+              src="assets/drink-lime.png"
+              alt="Лимонад з лаймом і мʼятою"
+            />
           </div>
-          <a class="section-link" href="catalog.html">Увесь каталог →</a>
+        </section>
+
+        <section class="benefits" aria-label="Переваги сервісу DrinkUp">
+          <article class="benefit-card">
+            <span class="benefit-icon">🚚</span>
+            <h2>Швидка доставка</h2>
+          </article>
+          <article class="benefit-card">
+            <span class="benefit-icon">🍹</span>
+            <h2>Великий вибір</h2>
+          </article>
+          <article class="benefit-card">
+            <span class="benefit-icon">💰</span>
+            <h2>Доступні ціни</h2>
+          </article>
+        </section>
+
+        <section class="mini-catalog" aria-labelledby="popularTitle">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Меню</span>
+              <h2 id="popularTitle">Популярні напої</h2>
+            </div>
+            <a class="section-link" href="catalog.html">Увесь каталог →</a>
+          </div>
+
+          <div
+            class="catalog-grid compact"
+            id="popularGrid"
+            aria-live="polite"
+          ></div>
+        </section>
+      </main>
+
+      <footer class="footer" id="contacts">
+        <address>
+          <a href="tel:+380997990557">+380997990557</a>
+          <a href="mailto:ak@qubiq.cc">ak@qubiq.cc</a>
+          <span>м. Дніпро, вул. Троїцька, 21</span>
+        </address>
+
+        <div class="socials" aria-label="Соціальні мережі">
+          <a
+            href="https://www.instagram.com/alexkaplan110606?utm_source=qr&igsh=bWh4eTA4Yzk1aWly"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 2A3.76 3.76 0 0 0 4 7.75v8.5A3.76 3.76 0 0 0 7.75 20h8.5A3.76 3.76 0 0 0 20 16.25v-8.5A3.76 3.76 0 0 0 16.25 4h-8.5Zm8.88 2.15a1.22 1.22 0 1 1 0 2.44 1.22 1.22 0 0 1 0-2.44ZM12 7.1A4.9 4.9 0 1 1 12 16.9 4.9 4.9 0 0 1 12 7.1Zm0 2A2.9 2.9 0 1 0 12 14.9 2.9 2.9 0 0 0 12 9.1Z"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://t.me/Tescatlipoca01"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Telegram"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                d="M21.74 4.67 18.47 20.1c-.25 1.09-.89 1.36-1.8.85l-5-3.69-2.41 2.32c-.27.27-.49.49-1 .49l.35-5.08 9.25-8.35c.4-.35-.09-.55-.62-.2L5.8 13.64.87 12.1c-1.07-.33-1.09-1.07.22-1.58L20.34 3.1c.89-.33 1.67.21 1.4 1.57Z"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://www.facebook.com/share/1E4fHsznqF/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                d="M13.5 22v-8.5h2.85l.43-3.31H13.5V8.08c0-.96.27-1.62 1.65-1.62h1.76V3.5c-.85-.09-1.71-.14-2.57-.14-2.54 0-4.28 1.55-4.28 4.4v2.43H7.2v3.31h2.86V22h3.44Z"
+              />
+            </svg>
+          </a>
         </div>
-
-        <div class="catalog-grid compact" id="popularGrid" aria-live="polite"></div>
-      </section>
-    </main>
-
-    <footer class="footer" id="contacts">
-      <address>
-        <a href="tel:+380997990557">+380997990557</a>
-        <a href="mailto:ak@qubiq.cc">ak@qubiq.cc</a>
-        <span>м. Дніпро, вул. Троїцька, 21</span>
-      </address>
-
-      <div class="socials" aria-label="Соціальні мережі">
-        <a href="#" aria-label="Facebook">f</a>
-        <a href="#" aria-label="Telegram">↗</a>
-        <a href="#" aria-label="Instagram">◎</a>
-      </div>
-    </footer>
-  </div>
-</body>
+      </footer>
+    </div>
+  </body>
 </html>
