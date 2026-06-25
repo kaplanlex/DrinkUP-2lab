@@ -2,6 +2,7 @@ const STORAGE_KEYS = {
   cart: "drinkup:cart",
   selectedProductId: "drinkup:selectedProductId",
   lastOrder: "drinkup:lastOrder",
+  theme: "drinkup:theme",
 };
 
 const CATEGORY_LABELS = {
@@ -9,6 +10,13 @@ const CATEGORY_LABELS = {
   juice: "Сік",
   coffee: "Айс-кава",
   smoothie: "Смузі",
+};
+
+const BADGE_LABELS = {
+  hit: "Хіт",
+  new: "Новинка",
+  "no-sugar": "Без цукру",
+  discount: "Акція",
 };
 
 const FILTER_TITLES = {
@@ -47,8 +55,11 @@ const PRODUCTS = [
     oldPrice: 109,
     category: "lemonade",
     isDiscounted: true,
+    popularity: 98,
+    badge: "discount",
     theme: "lime",
     image: "assets/drink-lime.png",
+    keywords: ["лимонад", "лайм", "мʼята", "освіжаючий"],
     features: ["Свіжий лайм", "Без консервантів", "Охолоджений"],
     details: [
       ["Обʼєм", "0.5 л"],
@@ -64,8 +75,11 @@ const PRODUCTS = [
     oldPrice: 0,
     category: "lemonade",
     isDiscounted: false,
+    popularity: 84,
+    badge: "no-sugar",
     theme: "lime",
     image: "assets/drink-lime.png",
+    keywords: ["лимонад", "огірок", "мʼята", "без цукру"],
     features: ["Свіжий огірок", "Легка кислинка", "Мʼятний післясмак"],
     details: [
       ["Обʼєм", "0.5 л"],
@@ -81,8 +95,11 @@ const PRODUCTS = [
     oldPrice: 119,
     category: "lemonade",
     isDiscounted: true,
+    popularity: 91,
+    badge: "discount",
     theme: "berry",
     image: "assets/drink-berry.png",
+    keywords: ["лимонад", "полуниця", "лимон", "сода"],
     features: ["Полуничне пюре", "Газована основа", "Без штучних барвників"],
     details: [
       ["Обʼєм", "0.5 л"],
@@ -98,8 +115,11 @@ const PRODUCTS = [
     oldPrice: 0,
     category: "lemonade",
     isDiscounted: false,
+    popularity: 87,
+    badge: "new",
     theme: "orange",
     image: "assets/drink-orange.png",
+    keywords: ["лимонад", "манго", "лайм", "тонік"],
     features: ["Стигле манго", "Тропічний аромат", "Подається з льодом"],
     details: [
       ["Обʼєм", "0.5 л"],
@@ -115,8 +135,11 @@ const PRODUCTS = [
     oldPrice: 110,
     category: "juice",
     isDiscounted: true,
+    popularity: 88,
+    badge: "discount",
     theme: "orange",
     image: "assets/drink-orange.png",
+    keywords: ["сік", "апельсин", "лимон", "свіжий"],
     features: ["Свіжий апельсин", "Газована основа", "Без барвників"],
     details: [
       ["Обʼєм", "0.5 л"],
@@ -132,8 +155,11 @@ const PRODUCTS = [
     oldPrice: 0,
     category: "juice",
     isDiscounted: false,
+    popularity: 80,
+    badge: "no-sugar",
     theme: "lime",
     image: "assets/drink-lime.png",
+    keywords: ["сік", "яблуко", "лайм", "без цукру"],
     features: ["Свіжий яблучний сік", "Лаймова нотка", "Без доданого цукру"],
     details: [
       ["Обʼєм", "0.4 л"],
@@ -149,8 +175,11 @@ const PRODUCTS = [
     oldPrice: 0,
     category: "juice",
     isDiscounted: false,
+    popularity: 76,
+    badge: "hit",
     theme: "orange",
     image: "assets/drink-orange.png",
+    keywords: ["сік", "грейпфрут", "тонік", "розмарин"],
     features: ["Грейпфрутовий фреш", "Тонік", "Розмариновий аромат"],
     details: [
       ["Обʼєм", "0.45 л"],
@@ -166,8 +195,11 @@ const PRODUCTS = [
     oldPrice: 0,
     category: "juice",
     isDiscounted: false,
+    popularity: 82,
+    badge: "new",
     theme: "berry",
     image: "assets/drink-berry.png",
+    keywords: ["сік", "чай", "ягоди", "холодний чай"],
     features: ["Натуральні ягоди", "Холодний чай", "Легкий смак"],
     details: [
       ["Обʼєм", "0.5 л"],
@@ -183,8 +215,11 @@ const PRODUCTS = [
     oldPrice: 0,
     category: "coffee",
     isDiscounted: false,
+    popularity: 89,
+    badge: "hit",
     theme: "berry",
     image: "assets/drink-berry.png",
+    keywords: ["кава", "айс-кава", "cold brew", "лід"],
     features: ["12 годин настоювання", "Мʼякий смак", "Без молока"],
     details: [
       ["Обʼєм", "0.35 л"],
@@ -200,8 +235,11 @@ const PRODUCTS = [
     oldPrice: 130,
     category: "coffee",
     isDiscounted: true,
+    popularity: 94,
+    badge: "discount",
     theme: "orange",
     image: "assets/drink-orange.png",
+    keywords: ["кава", "айс-кава", "лате", "ваніль"],
     features: ["Подвійний еспресо", "Ванільний сироп", "Охолоджене молоко"],
     details: [
       ["Обʼєм", "0.4 л"],
@@ -217,8 +255,11 @@ const PRODUCTS = [
     oldPrice: 0,
     category: "coffee",
     isDiscounted: false,
+    popularity: 73,
+    badge: "new",
     theme: "berry",
     image: "assets/drink-berry.png",
+    keywords: ["кава", "фрапе", "какао", "лід"],
     features: ["Кавова основа", "Какао", "Кремова текстура"],
     details: [
       ["Обʼєм", "0.45 л"],
@@ -234,8 +275,11 @@ const PRODUCTS = [
     oldPrice: 135,
     category: "smoothie",
     isDiscounted: true,
+    popularity: 85,
+    badge: "discount",
     theme: "lime",
     image: "assets/drink-lime.png",
+    keywords: ["смузі", "детокс", "шпинат", "яблуко"],
     features: ["Шпинат", "Зелене яблуко", "Натуральна основа"],
     details: [
       ["Обʼєм", "0.45 л"],
@@ -251,8 +295,11 @@ const PRODUCTS = [
     oldPrice: 145,
     category: "smoothie",
     isDiscounted: true,
+    popularity: 92,
+    badge: "discount",
     theme: "berry",
     image: "assets/drink-berry.png",
+    keywords: ["смузі", "ягоди", "малина", "чорниця", "банан"],
     features: ["Лісові ягоди", "Бананова текстура", "Без консервантів"],
     details: [
       ["Обʼєм", "0.45 л"],
@@ -268,8 +315,11 @@ const PRODUCTS = [
     oldPrice: 0,
     category: "smoothie",
     isDiscounted: false,
+    popularity: 78,
+    badge: "hit",
     theme: "orange",
     image: "assets/drink-orange.png",
+    keywords: ["смузі", "банан", "йогурт", "енергія"],
     features: ["Банан", "Йогурт", "Легкий медовий смак"],
     details: [
       ["Обʼєм", "0.45 л"],
@@ -285,8 +335,11 @@ const PRODUCTS = [
     oldPrice: 125,
     category: "smoothie",
     isDiscounted: true,
+    popularity: 90,
+    badge: "discount",
     theme: "berry",
     image: "assets/drink-berry.png",
+    keywords: ["смузі", "кавун", "лайм", "мʼята"],
     features: ["Кавуновий фреш", "Лайм", "Свіжа мʼята"],
     details: [
       ["Обʼєм", "0.5 л"],
@@ -299,10 +352,15 @@ const PRODUCTS = [
 let currentProductIndex = 0;
 let currentQuantity = 1;
 let currentCatalogFilter = "all";
+let currentSearchQuery = "";
+let currentSortType = "popular";
 
 const page = document.body.dataset.page;
 
+applySavedTheme();
+
 document.addEventListener("DOMContentLoaded", () => {
+  initThemeToggle();
   initBurgerMenu();
   setActiveHeaderLink();
 
@@ -322,6 +380,42 @@ document.addEventListener("DOMContentLoaded", () => {
     initCheckoutPage();
   }
 });
+
+function applySavedTheme() {
+  const savedTheme = localStorage.getItem(STORAGE_KEYS.theme) || "dark";
+  document.body.classList.toggle("light-theme", savedTheme === "light");
+}
+
+function initThemeToggle() {
+  const themeButtons = document.querySelectorAll("[data-theme-toggle]");
+
+  updateThemeToggleIcons();
+
+  themeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const isLight = document.body.classList.toggle("light-theme");
+      localStorage.setItem(STORAGE_KEYS.theme, isLight ? "light" : "dark");
+      updateThemeToggleIcons();
+    });
+  });
+}
+
+function updateThemeToggleIcons() {
+  const isLight = document.body.classList.contains("light-theme");
+  const nextIcon = isLight ? "🌙" : "☀️";
+  const nextLabel = isLight ? "Увімкнути темну тему" : "Увімкнути світлу тему";
+
+  document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+    const icon = button.querySelector("[data-theme-icon]");
+
+    if (icon) {
+      icon.textContent = nextIcon;
+    }
+
+    button.setAttribute("aria-label", nextLabel);
+    button.setAttribute("title", nextLabel);
+  });
+}
 
 function initBurgerMenu() {
   const burger = document.querySelector(".burger");
@@ -373,7 +467,13 @@ function initHomePage() {
 
   if (!popularGrid) return;
 
-  const popularProducts = PRODUCTS.slice(0, 6);
+  const popularProducts = [...PRODUCTS]
+    .sort(
+      (firstProduct, secondProduct) =>
+        secondProduct.popularity - firstProduct.popularity,
+    )
+    .slice(0, 6);
+
   popularGrid.innerHTML = popularProducts.map(createProductCardMarkup).join("");
 }
 
@@ -386,6 +486,8 @@ function initCatalogPage() {
 function bindCatalogControls() {
   const filterButtons = document.querySelectorAll("[data-filter]");
   const navLinks = document.querySelectorAll("[data-catalog-nav]");
+  const searchInput = document.querySelector("#search-input");
+  const sortSelect = document.querySelector("#sort-select");
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -403,18 +505,39 @@ function bindCatalogControls() {
       updateCatalogUrl(filter);
     });
   });
+
+  if (searchInput) {
+    searchInput.addEventListener("input", (event) => {
+      currentSearchQuery = event.target.value.trim().toLowerCase();
+      renderProducts(currentCatalogFilter);
+    });
+  }
+
+  if (sortSelect) {
+    currentSortType = sortSelect.value || "popular";
+
+    sortSelect.addEventListener("change", (event) => {
+      currentSortType = event.target.value;
+      renderProducts(currentCatalogFilter);
+    });
+  }
 }
 
 /*
   Головна функція рендеру каталогу.
   filter: "all" | "discounts" | "lemonade" | "juice" | "coffee" | "smoothie"
+  Пошук та сортування працюють поверх вибраного фільтра.
 */
 function renderProducts(filter = "all") {
   const catalogGrid = document.querySelector("#catalogGrid");
   const emptyMessage = document.querySelector("#emptyMessage");
   const catalogCount = document.querySelector("#catalogCount");
   const normalizedFilter = normalizeFilter(filter);
-  const filteredProducts = getFilteredProducts(normalizedFilter);
+  const filteredProducts = getCatalogProducts(
+    normalizedFilter,
+    currentSearchQuery,
+    currentSortType,
+  );
 
   currentCatalogFilter = normalizedFilter;
   updateCatalogTexts(normalizedFilter, filteredProducts.length);
@@ -428,12 +551,28 @@ function renderProducts(filter = "all") {
     .join("");
 
   if (emptyMessage) {
+    const hasSearch = currentSearchQuery.length > 0;
     emptyMessage.hidden = filteredProducts.length > 0;
+    emptyMessage.textContent = hasSearch
+      ? "За вашим пошуком напоїв не знайдено. Спробуйте інший запит."
+      : "За цим фільтром поки немає напоїв.";
   }
 
   if (catalogCount) {
     catalogCount.textContent = String(filteredProducts.length);
   }
+}
+
+function getCatalogProducts(filter, searchQuery, sortType) {
+  const normalizedSearch = String(searchQuery || "")
+    .trim()
+    .toLowerCase();
+
+  return getFilteredProducts(filter)
+    .filter((product) => matchesSearchQuery(product, normalizedSearch))
+    .sort((firstProduct, secondProduct) =>
+      sortProducts(firstProduct, secondProduct, sortType),
+    );
 }
 
 function getFilteredProducts(filter) {
@@ -445,21 +584,58 @@ function getFilteredProducts(filter) {
     return PRODUCTS.filter((product) => product.category === filter);
   }
 
-  return PRODUCTS;
+  return [...PRODUCTS];
+}
+
+function matchesSearchQuery(product, searchQuery) {
+  if (!searchQuery) return true;
+
+  const searchableText = [
+    product.name,
+    product.short,
+    CATEGORY_LABELS[product.category],
+    product.category,
+    ...(product.keywords || []),
+    ...(product.features || []),
+  ]
+    .join(" ")
+    .toLowerCase();
+
+  return searchableText.includes(searchQuery);
+}
+
+function sortProducts(firstProduct, secondProduct, sortType) {
+  switch (sortType) {
+    case "price-asc":
+      return firstProduct.price - secondProduct.price;
+    case "price-desc":
+      return secondProduct.price - firstProduct.price;
+    case "discounts-first":
+      return (
+        Number(secondProduct.isDiscounted) -
+          Number(firstProduct.isDiscounted) ||
+        secondProduct.popularity - firstProduct.popularity
+      );
+    case "popular":
+    default:
+      return secondProduct.popularity - firstProduct.popularity;
+  }
 }
 
 function createProductCardMarkup(product) {
-  const discountBadge = product.isDiscounted
-    ? `<span class="discount-badge">-${getDiscountPercent(product)}%</span>`
+  const badgeData = getProductBadge(product);
+  const badgeMarkup = badgeData
+    ? `<span class="product-badge ${badgeData.className}">${escapeHtml(badgeData.label)}</span>`
     : "";
 
-  const oldPriceMarkup = product.isDiscounted
-    ? `<span class="old-price">${formatPrice(product.oldPrice)}</span>`
-    : "";
+  const oldPriceMarkup =
+    product.isDiscounted && product.oldPrice > product.price
+      ? `<span class="old-price">${formatPrice(product.oldPrice)}</span>`
+      : "";
 
   return `
     <a class="product-card" href="cart.html?id=${encodeURIComponent(product.id)}" aria-label="Відкрити товар ${escapeHtml(product.name)}">
-      ${discountBadge}
+      ${badgeMarkup}
       <div class="product-card-image" data-theme="${escapeHtml(product.theme)}">
         <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" />
       </div>
@@ -483,6 +659,22 @@ function createProductCardMarkup(product) {
       </div>
     </a>
   `;
+}
+
+function getProductBadge(product) {
+  if (product.isDiscounted && product.oldPrice > product.price) {
+    return {
+      label: `-${getDiscountPercent(product)}%`,
+      className: "badge-discount",
+    };
+  }
+
+  if (!product.badge) return null;
+
+  return {
+    label: BADGE_LABELS[product.badge] || product.badge,
+    className: `badge-${product.badge}`,
+  };
 }
 
 function updateCatalogTexts(filter, count) {
@@ -662,8 +854,9 @@ function bindProductControls() {
 }
 
 function createDrinkArtwork(product) {
-  const badgeMarkup = product.isDiscounted
-    ? `<span class="discount-badge product-discount-badge">-${getDiscountPercent(product)}%</span>`
+  const badgeData = getProductBadge(product);
+  const badgeMarkup = badgeData
+    ? `<span class="product-badge product-discount-badge ${badgeData.className}">${escapeHtml(badgeData.label)}</span>`
     : "";
 
   return `
