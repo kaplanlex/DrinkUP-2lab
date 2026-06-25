@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DrinkUp — товар і кошик</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
@@ -12,8 +13,9 @@
       <header class="top-panel">
         <a
           class="icon-back"
-          href="catalog.html"
-          aria-label="Повернутися до каталогу"
+          href="index.html"
+          data-smart-back
+          aria-label="Повернутися назад"
           >‹</a
         >
         <strong id="productTitle">Лимонад Fresh Lime</strong>
@@ -111,7 +113,7 @@
       </main>
 
       <footer class="bottom-actions">
-        <a class="btn btn-secondary" href="catalog.html"
+        <a class="btn btn-secondary" href="index.html" data-smart-back
           ><span class="arrow-left">←</span> Назад</a
         >
         <button class="btn btn-secondary" type="button" id="nextProductBtn">

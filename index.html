@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DrinkUp — холодні напої</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
@@ -17,7 +18,7 @@
 
         <nav class="site-nav" aria-label="Головна навігація">
           <a href="index.html">Головна</a>
-          <a href="catalog.html">Напої</a>
+          <a href="catalog.html?filter=all">Напої</a>
           <a href="catalog.html?filter=discounts">Акції</a>
           <a href="#contacts">Контакти</a>
         </nav>
@@ -53,7 +54,9 @@
               Найкращі холодні напої з доставкою за 30 хвилин.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="catalog.html">Замовити зараз</a>
+              <a class="btn btn-primary" href="catalog.html?filter=all"
+                >Замовити зараз</a
+              >
               <a class="btn btn-secondary" href="catalog.html?filter=discounts"
                 >Переглянути акції</a
               >
@@ -90,7 +93,9 @@
               <span class="section-kicker">Меню</span>
               <h2 id="popularTitle">Популярні напої</h2>
             </div>
-            <a class="section-link" href="catalog.html">Увесь каталог →</a>
+            <a class="section-link" href="catalog.html?filter=all"
+              >Увесь каталог →</a
+            >
           </div>
 
           <div

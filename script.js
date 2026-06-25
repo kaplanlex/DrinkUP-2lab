@@ -5,6 +5,14 @@ const STORAGE_KEYS = {
   theme: "drinkup:theme",
 };
 
+const SESSION_KEYS = {
+  currentFilteredIds: "currentFilteredIds",
+  searchQuery: "searchQuery",
+  activeCategory: "activeCategory",
+  activeSort: "activeSort",
+  productReturnUrl: "productReturnUrl",
+};
+
 const CATEGORY_LABELS = {
   lemonade: "Лимонади",
   juice: "Соки",
@@ -347,6 +355,30 @@ const PRODUCTS = [
       ["Калорійність", "142 ккал"],
     ],
   },
+  {
+    id: "mojito-zero",
+    name: "Мохіто Безалкогольний",
+    short: "Свіжа мʼята, лайм, спрайт, лід",
+    description: "Свіжа мʼята, лайм, тростинний цукор, спрайт, лід",
+    price: 95,
+    oldPrice: 0,
+    category: "lemonade",
+    isDiscounted: false,
+    popularity: 96,
+    badge: "hit",
+    theme: "lime",
+    image: "assets/drink-lime.png",
+    keywords: ["мохіто", "мохито", "лимонад", "мʼята", "лайм", "спрайт", "лід"],
+    features: ["Свіжа мʼята", "Лаймова кислинка", "Подається з льодом"],
+    volume: "0.5 л",
+    temperature: "3°C",
+    calories: "110 ккал",
+    details: [
+      ["Обʼєм", "0.5 л"],
+      ["Температура", "3°C"],
+      ["Калорійність", "110 ккал"],
+    ],
+  },
 ];
 
 let currentProductIndex = 0;
@@ -362,6 +394,8 @@ applySavedTheme();
 document.addEventListener("DOMContentLoaded", () => {
   initThemeToggle();
   initBurgerMenu();
+  initSmartBackButtons();
+  initProductReturnTracking();
   setActiveHeaderLink();
 
   if (page === "home") {
@@ -438,6 +472,103 @@ function initBurgerMenu() {
   });
 }
 
+function initSmartBackButtons() {
+  const backButtons = document.querySelectorAll("[data-smart-back]");
+
+  backButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      goBackSmart();
+    });
+  });
+}
+
+function initProductReturnTracking() {
+  document.addEventListener("click", (event) => {
+    const link =
+      event.target instanceof Element
+        ? event.target.closest('a[href*="cart.html?id="]')
+        : null;
+
+    if (!link) return;
+
+    setSessionItem(SESSION_KEYS.productReturnUrl, {
+      url: getCurrentRelativeUrl(),
+      savedAt: Date.now(),
+    });
+  });
+}
+
+function goBackSmart() {
+  const savedReturn = getSavedProductReturnUrl();
+
+  if (window.history.length > 1 && hasInternalReferrer()) {
+    window.history.back();
+    return;
+  }
+
+  if (savedReturn) {
+    window.location.href = savedReturn;
+    return;
+  }
+
+  window.location.href = "index.html";
+}
+
+function hasInternalReferrer() {
+  if (!document.referrer) return false;
+
+  try {
+    const referrerUrl = new URL(document.referrer);
+    const currentUrl = new URL(window.location.href);
+
+    if (currentUrl.protocol === "file:" && referrerUrl.protocol === "file:") {
+      return (
+        getDirectoryPath(referrerUrl.pathname) ===
+        getDirectoryPath(currentUrl.pathname)
+      );
+    }
+
+    return referrerUrl.origin === currentUrl.origin;
+  } catch (error) {
+    return false;
+  }
+}
+
+function getSavedProductReturnUrl() {
+  const savedReturn = getSessionItem(SESSION_KEYS.productReturnUrl);
+
+  if (!savedReturn || typeof savedReturn !== "object") return null;
+
+  const { url, savedAt } = savedReturn;
+  const isFresh =
+    typeof savedAt === "number" && Date.now() - savedAt < 1000 * 60 * 60 * 6;
+
+  if (!isFresh || !isSafeRelativePageUrl(url)) return null;
+
+  return url;
+}
+
+function getCurrentRelativeUrl() {
+  const fileName = window.location.pathname.split("/").pop() || "index.html";
+  return `${fileName}${window.location.search}${window.location.hash}`;
+}
+
+function isSafeRelativePageUrl(url) {
+  if (typeof url !== "string" || !url.trim()) return false;
+  if (/^(https?:|file:|\/\/)/i.test(url)) return false;
+  if (!/^(index|catalog|cart|checkout)\.html(\?|#|$)/.test(url)) return false;
+
+  return url !== getCurrentRelativeUrl();
+}
+
+function getDirectoryPath(pathname) {
+  return String(pathname || "")
+    .split("/")
+    .slice(0, -1)
+    .join("/");
+}
+
 function setActiveHeaderLink() {
   const navLinks = document.querySelectorAll(".site-nav a");
 
@@ -475,10 +606,14 @@ function initHomePage() {
     .slice(0, 6);
 
   popularGrid.innerHTML = popularProducts.map(createProductCardMarkup).join("");
+  setSessionItem(
+    SESSION_KEYS.currentFilteredIds,
+    popularProducts.map((product) => product.id),
+  );
 }
 
 function initCatalogPage() {
-  currentCatalogFilter = getFilterFromUrl();
+  restoreCatalogState();
   bindCatalogControls();
   renderProducts(currentCatalogFilter);
 }
@@ -488,6 +623,14 @@ function bindCatalogControls() {
   const navLinks = document.querySelectorAll("[data-catalog-nav]");
   const searchInput = document.querySelector("#search-input");
   const sortSelect = document.querySelector("#sort-select");
+
+  if (searchInput) {
+    searchInput.value = currentSearchQuery;
+  }
+
+  if (sortSelect) {
+    sortSelect.value = currentSortType;
+  }
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -514,13 +657,51 @@ function bindCatalogControls() {
   }
 
   if (sortSelect) {
-    currentSortType = sortSelect.value || "popular";
-
     sortSelect.addEventListener("change", (event) => {
       currentSortType = event.target.value;
       renderProducts(currentCatalogFilter);
     });
   }
+}
+
+function restoreCatalogState() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlHasFilter = urlParams.has("filter");
+  const savedFilter = getSessionItem(SESSION_KEYS.activeCategory);
+  const savedSearch = getSessionItem(SESSION_KEYS.searchQuery);
+  const savedSort = getSessionItem(SESSION_KEYS.activeSort);
+
+  currentCatalogFilter = urlHasFilter
+    ? getFilterFromUrl()
+    : normalizeFilter(savedFilter || "all");
+  currentSearchQuery = String(savedSearch || "")
+    .trim()
+    .toLowerCase();
+  currentSortType = isValidSortType(savedSort) ? savedSort : "popular";
+}
+
+function saveCatalogState(filter, searchQuery, sortType, filteredProducts) {
+  setSessionItem(SESSION_KEYS.activeCategory, normalizeFilter(filter));
+  setSessionItem(
+    SESSION_KEYS.searchQuery,
+    String(searchQuery || "")
+      .trim()
+      .toLowerCase(),
+  );
+  setSessionItem(
+    SESSION_KEYS.activeSort,
+    isValidSortType(sortType) ? sortType : "popular",
+  );
+  setSessionItem(
+    SESSION_KEYS.currentFilteredIds,
+    filteredProducts.map((product) => product.id),
+  );
+}
+
+function isValidSortType(sortType) {
+  return ["price-asc", "price-desc", "popular", "discounts-first"].includes(
+    sortType,
+  );
 }
 
 /*
@@ -540,6 +721,12 @@ function renderProducts(filter = "all") {
   );
 
   currentCatalogFilter = normalizedFilter;
+  saveCatalogState(
+    normalizedFilter,
+    currentSearchQuery,
+    currentSortType,
+    filteredProducts,
+  );
   updateCatalogTexts(normalizedFilter, filteredProducts.length);
   updateFilterButtons(normalizedFilter);
   updateCatalogNavLinks(normalizedFilter);
@@ -593,6 +780,7 @@ function matchesSearchQuery(product, searchQuery) {
   const searchableText = [
     product.name,
     product.short,
+    product.description,
     CATEGORY_LABELS[product.category],
     product.category,
     ...(product.keywords || []),
@@ -835,9 +1023,7 @@ function bindProductControls() {
 
   if (nextButton) {
     nextButton.addEventListener("click", () => {
-      currentProductIndex = (currentProductIndex + 1) % PRODUCTS.length;
-      currentQuantity = 1;
-      renderProduct();
+      goToNextFilteredProduct();
     });
   }
 
@@ -862,6 +1048,36 @@ function bindProductControls() {
       }
     });
   }
+}
+
+function goToNextFilteredProduct() {
+  const currentProduct = PRODUCTS[currentProductIndex];
+  const visibleIds = getVisibleProductIdsForNavigation(currentProduct.id);
+  const currentVisibleIndex = visibleIds.indexOf(currentProduct.id);
+  const safeIndex = currentVisibleIndex === -1 ? 0 : currentVisibleIndex;
+  const nextProductId = visibleIds[(safeIndex + 1) % visibleIds.length];
+  const nextProductIndex = PRODUCTS.findIndex(
+    (product) => product.id === nextProductId,
+  );
+
+  if (nextProductIndex === -1) return;
+
+  currentProductIndex = nextProductIndex;
+  currentQuantity = 1;
+  renderProduct();
+}
+
+function getVisibleProductIdsForNavigation(currentProductId) {
+  const savedIds = getSessionItem(SESSION_KEYS.currentFilteredIds);
+  const validIds = Array.isArray(savedIds)
+    ? savedIds.filter((id) => PRODUCTS.some((product) => product.id === id))
+    : [];
+
+  if (validIds.length > 0 && validIds.includes(currentProductId)) {
+    return validIds;
+  }
+
+  return PRODUCTS.map((product) => product.id);
 }
 
 function createDrinkArtwork(product) {
@@ -1389,5 +1605,23 @@ function setStorageItem(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
   } catch (error) {
     console.warn("Не вдалося записати localStorage:", error);
+  }
+}
+
+function getSessionItem(key) {
+  try {
+    const rawValue = sessionStorage.getItem(key);
+    return rawValue ? JSON.parse(rawValue) : null;
+  } catch (error) {
+    console.warn("Не вдалося прочитати sessionStorage:", error);
+    return null;
+  }
+}
+
+function setSessionItem(key, value) {
+  try {
+    sessionStorage.setItem(key, JSON.stringify(value));
+  } catch (error) {
+    console.warn("Не вдалося записати sessionStorage:", error);
   }
 }
