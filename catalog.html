@@ -54,8 +54,8 @@
             <p class="eyebrow">DrinkUp каталог</p>
             <h1 id="catalogTitle">Напої для будь-якого настрою</h1>
             <p class="catalog-hero-text">
-              Лимонади, соки, айс-кава та смузі у темному неоновому стилі
-              DrinkUp.
+              Лимонади, соки, айс-кава, смузі та коктейлі у темному неоновому
+              стилі DrinkUp.
             </p>
           </div>
 
@@ -63,6 +63,30 @@
             <span id="catalogCount">0</span>
             <small>позицій</small>
           </div>
+        </section>
+
+        <section class="type-filter-panel" aria-label="Фільтр за типом напоїв">
+          <button
+            class="type-chip is-active"
+            type="button"
+            data-type-filter="all"
+          >
+            Усі
+          </button>
+          <button
+            class="type-chip"
+            type="button"
+            data-type-filter="non-alcoholic"
+          >
+            Безалкогольні
+          </button>
+          <button
+            class="type-chip type-chip-age"
+            type="button"
+            data-type-filter="alcohol"
+          >
+            Алкогольні (18+)
+          </button>
         </section>
 
         <section class="filter-panel" aria-label="Фільтри каталогу">
@@ -83,6 +107,9 @@
           </button>
           <button class="filter-chip" type="button" data-filter="smoothie">
             Смузі
+          </button>
+          <button class="filter-chip" type="button" data-filter="coctails">
+            Коктейлі
           </button>
         </section>
 

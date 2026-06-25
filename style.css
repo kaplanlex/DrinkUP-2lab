@@ -14,6 +14,7 @@
   --red: #fb3f5f;
   --danger: #fb7185;
   --line: rgba(148, 163, 184, 0.26);
+  --divider-line: rgba(148, 163, 184, 0.22);
   --line-strong: rgba(203, 213, 225, 0.38);
   --green-soft: rgba(34, 197, 94, 0.18);
   --shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
@@ -50,6 +51,7 @@ body.light-theme {
   --btn-secondary: #e2e8f0;
 
   --line: rgba(15, 23, 42, 0.13);
+  --divider-line: rgba(15, 23, 42, 0.16);
   --line-strong: rgba(15, 23, 42, 0.22);
   --green-soft: rgba(34, 197, 94, 0.14);
   --shadow: 0 24px 70px rgba(15, 23, 42, 0.14);
@@ -536,6 +538,14 @@ button {
   color: var(--green);
 }
 
+.section-divider {
+  width: calc(100% - 56px);
+  height: 1px;
+  margin: 36px 28px 0;
+  border: 0;
+  border-top: 1px solid var(--divider-line);
+}
+
 .footer {
   display: flex;
   align-items: flex-end;
@@ -689,14 +699,25 @@ button {
   font-weight: 800;
 }
 
+.type-filter-panel,
 .filter-panel {
   display: flex;
   gap: 10px;
-  padding: 22px 32px 0;
+  padding-left: 32px;
+  padding-right: 32px;
   overflow-x: auto;
   scrollbar-width: thin;
 }
 
+.type-filter-panel {
+  padding-top: 22px;
+}
+
+.filter-panel {
+  padding-top: 12px;
+}
+
+.type-chip,
 .filter-chip {
   min-height: 38px;
   padding: 0 16px;
@@ -712,6 +733,8 @@ button {
     box-shadow 0.2s ease;
 }
 
+.type-chip:hover,
+.type-chip.is-active,
 .filter-chip:hover,
 .filter-chip.is-active {
   color: var(--text-primary);
@@ -785,7 +808,7 @@ button {
 .product-card-image img {
   position: static;
   display: block;
-  width: min(82%, 180px);
+  width: min(88%, 190px);
   max-width: 100%;
   height: 170px;
   object-fit: contain;
@@ -1386,6 +1409,7 @@ button {
     min-height: 96px;
   }
 
+  .type-filter-panel,
   .filter-panel {
     padding-left: 22px;
     padding-right: 22px;
@@ -1400,6 +1424,11 @@ button {
   .footer {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .section-divider {
+    width: calc(100% - 40px);
+    margin: 34px 20px 0;
   }
 
   .product-content {
@@ -1701,6 +1730,7 @@ button,
 input,
 select,
 .card-action,
+.type-chip,
 .filter-chip,
 .socials a,
 .icon-back,
@@ -1728,7 +1758,8 @@ body.light-theme .order-summary {
   background: var(--btn-secondary);
 }
 
-body.light-theme .category-pill {
+body.light-theme .category-pill,
+body.light-theme .type-chip {
   color: var(--text-secondary);
   background: var(--btn-secondary);
 }
@@ -1879,6 +1910,7 @@ body,
 
 .product-card-image,
 .category-pill,
+.type-chip,
 .filter-chip,
 .btn-secondary,
 .quantity,
@@ -1892,6 +1924,7 @@ body,
 }
 
 .category-pill,
+.type-chip:not(.is-active),
 .filter-chip:not(.is-active),
 .socials a,
 .back-inline,
