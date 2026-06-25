@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DrinkUp — каталог напоїв</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body data-page="catalog">
+    <div class="app-frame catalog-frame">
+      <header class="site-header">
+        <a class="logo" href="index.html" aria-label="DrinkUp">
+          <span class="logo-mark"></span>
+          <span>DrinkUp</span>
+        </a>
+
+        <nav class="site-nav" aria-label="Головна навігація">
+          <a href="index.html">Головна</a>
+          <a href="catalog.html" data-catalog-nav="all">Напої</a>
+          <a href="catalog.html?filter=discounts" data-catalog-nav="discounts"
+            >Акції</a
+          >
+          <a href="index.html#contacts">Контакти</a>
+        </nav>
+
+        <button
+          class="theme-toggle"
+          type="button"
+          data-theme-toggle
+          aria-label="Перемкнути тему"
+          title="Перемкнути тему"
+        >
+          <span data-theme-icon aria-hidden="true">☀️</span>
+        </button>
+
+        <button
+          class="burger"
+          type="button"
+          aria-label="Відкрити меню"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </header>
+
+      <main class="catalog-main">
+        <section class="catalog-hero" aria-labelledby="catalogTitle">
+          <div>
+            <a class="back-inline" href="index.html">‹ На головну</a>
+            <p class="eyebrow">DrinkUp каталог</p>
+            <h1 id="catalogTitle">Напої для будь-якого настрою</h1>
+            <p class="catalog-hero-text">
+              Лимонади, соки, айс-кава та смузі у темному неоновому стилі
+              DrinkUp.
+            </p>
+          </div>
+
+          <div class="catalog-counter">
+            <span id="catalogCount">0</span>
+            <small>позицій</small>
+          </div>
+        </section>
+
+        <section class="filter-panel" aria-label="Фільтри каталогу">
+          <button class="filter-chip is-active" type="button" data-filter="all">
+            Усі напої
+          </button>
+          <button class="filter-chip" type="button" data-filter="discounts">
+            Акції
+          </button>
+          <button class="filter-chip" type="button" data-filter="lemonade">
+            Лимонади
+          </button>
+          <button class="filter-chip" type="button" data-filter="juice">
+            Соки
+          </button>
+          <button class="filter-chip" type="button" data-filter="coffee">
+            Айс-кава
+          </button>
+          <button class="filter-chip" type="button" data-filter="smoothie">
+            Смузі
+          </button>
+        </section>
+
+        <section
+          class="catalog-toolbar"
+          aria-label="Пошук та сортування каталогу"
+        >
+          <label class="catalog-control search-control" for="search-input">
+            <span>Пошук</span>
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Пошук напою..."
+              autocomplete="off"
+            />
+          </label>
+
+          <label class="catalog-control sort-control" for="sort-select">
+            <span>Сортування</span>
+            <select id="sort-select">
+              <option value="price-asc">Спочатку дешевші</option>
+              <option value="price-desc">Спочатку дорожчі</option>
+              <option value="popular" selected>Популярні</option>
+              <option value="discounts-first">Акційні</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="catalog-section" aria-labelledby="catalogSectionTitle">
+          <div class="section-heading catalog-heading">
+            <div>
+              <span class="section-kicker" id="catalogKicker">Каталог</span>
+              <h2 id="catalogSectionTitle">Усі напої</h2>
+            </div>
+          </div>
+
+          <div
+            class="catalog-grid full"
+            id="catalogGrid"
+            aria-live="polite"
+          ></div>
+          <p class="empty-message" id="emptyMessage" hidden>
+            За цим фільтром поки немає напоїв.
+          </p>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

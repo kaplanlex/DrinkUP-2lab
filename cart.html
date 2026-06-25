@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DrinkUp — товар</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body data-page="product">
+    <div class="app-frame product-frame">
+      <header class="top-panel">
+        <a
+          class="icon-back"
+          href="catalog.html"
+          aria-label="Повернутися до каталогу"
+          >‹</a
+        >
+        <strong id="productTitle">Лимонад Fresh Lime</strong>
+        <button
+          class="theme-toggle top-theme-toggle"
+          type="button"
+          data-theme-toggle
+          aria-label="Перемкнути тему"
+          title="Перемкнути тему"
+        >
+          <span data-theme-icon aria-hidden="true">☀️</span>
+        </button>
+      </header>
+
+      <main class="product-main">
+        <section class="product-content">
+          <div
+            class="product-visual"
+            id="productVisual"
+            aria-label="Зображення напою"
+          ></div>
+
+          <div class="product-info">
+            <ul class="feature-list" id="featureList"></ul>
+
+            <div class="separator"></div>
+
+            <dl class="details-list" id="detailsList"></dl>
+
+            <div class="separator"></div>
+
+            <div class="product-buy-row">
+              <div class="product-price-box" id="productPriceBox">
+                <p class="price" id="productPrice">89 грн</p>
+              </div>
+
+              <div class="quantity" aria-label="Кількість товару">
+                <button
+                  class="quantity-btn"
+                  type="button"
+                  data-qty="minus"
+                  aria-label="Зменшити кількість"
+                >
+                  −
+                </button>
+                <span id="quantityValue">1</span>
+                <button
+                  class="quantity-btn"
+                  type="button"
+                  data-qty="plus"
+                  aria-label="Збільшити кількість"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="bottom-actions">
+        <a class="btn btn-secondary" href="catalog.html"
+          ><span class="arrow-left">←</span> Назад</a
+        >
+        <button class="btn btn-secondary" type="button" id="nextProductBtn">
+          Наступний товар
+        </button>
+        <button class="btn btn-primary" type="button" id="orderBtn">
+          Замовити
+        </button>
+      </footer>
+    </div>
+  </body>
+</html>
